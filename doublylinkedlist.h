@@ -11,7 +11,7 @@ typedef struct DoublyLinkedList {
 DoublyLinkedList init_list();
 
 // Returns 0 if key is found : node contains found node
-// Returns 1 if key is not found : node contains node with higher key
+// Returns 1 if key is not found : node contains the list's tail node
 // Returns -1 on error 
 int search_list(DoublyLinkedList* list, const char* key, Node** node);
 
