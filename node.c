@@ -13,6 +13,7 @@ Node* new_node(const char* AM, const char* full_name, const int semester) {
     node->semester = semester;
     node->last = NULL;
     node->next = NULL;
+    return node;
 }
 
 Node* new_empty_node(Node* last, Node* next) {
