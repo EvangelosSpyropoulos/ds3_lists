@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 
-void insert_student(DoublyLinkedList* list, const char* AM, const char* full_name, const int semester);
+int insert_student(DoublyLinkedList* list, const char* AM, const char* full_name, const int semester);
 int remove_student(DoublyLinkedList* list, const char* AM);
 int search_student(DoublyLinkedList* list, const char* AM, Node** student_node);
 int search_student_by_name(DoublyLinkedList* list, const char* full_name, Node** student_node);
@@ -45,8 +45,11 @@ int main() {
                 input_AM(AM, 21);
                 input_full_name(full_name, 21);
                 input_semester(&semester);
-                insert_student(&student_list, AM, full_name, semester);
-                printf("Student inserted.\n");
+                if ( insert_student(&student_list, AM, full_name, semester) == 0) {
+                    printf("Student inserted.\n");
+                } else {
+                    printf("Student with given AM already exists.");
+                }
                 break;
             case 2:
                 input_AM(AM, 21);
@@ -103,10 +106,14 @@ int main() {
     return 0;
 }
 
-void insert_student(DoublyLinkedList* list, const char* AM, const char* full_name, const int semester) {
+int insert_student(DoublyLinkedList* list, const char* AM, const char* full_name, const int semester) {
     Node* next_node;
-    search_student(list, AM, &next_node);
+    
+    // Student with given AM already exists.
+    if (search_student(list, AM, &next_node) == 0) { return 1; };
+    
     insert_node_before(new_node(AM, full_name, semester), next_node);
+    return 0;
 }
 
 int remove_student(DoublyLinkedList* list, const char* AM) {
