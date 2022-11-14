@@ -75,12 +75,13 @@ Node* advance(Node* start, int n) {
             }
             node = node->next;
             n--;
-        } else if (n < 0) {
+        } else {
             if (!node->last) {
                 printf("Reached the start of the list. Empty head node returned.\n");
                 return node;
             }
             node = node->last;
+            n++;
         }
     }
 
