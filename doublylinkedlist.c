@@ -23,7 +23,7 @@ int search_list(DoublyLinkedList* list, const char* key, Node** node) {
     (*node) = list->head->next;
     while ((*node) != list->tail) {
         int found = strcmp((*node)->AM,key);
-        if (!(found < 0)) { return found; } 
+        if (found == 0) { return 0; } 
 
         (*node) = (*node)->next;
     }
